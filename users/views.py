@@ -10,8 +10,9 @@ from users.serializers import CustomTokenObtainPairSerializer, UserSerializer
 
 
 class UserView(APIView):
-    def post(self,request):
-        serializer = UserSerializer(data = request.data)
+
+    def POST(self,request):
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response ({"message":"가입이 완료되었습니다."}, status=status.HTTP_201_CREATED)
