@@ -9,3 +9,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return str(self.content)
+    
+class Post(models.Model):
+    title = models.CharField(max_length=50)
+    contant = models.TextField()
+    image = models.ImageField(blank=True)
+    
+    def __str__(self):
+        return str(self.title)
