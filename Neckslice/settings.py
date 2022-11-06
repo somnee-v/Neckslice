@@ -33,6 +33,9 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'users',
+
+    # 22.11.06 최신욱 추가.
+    'movies.apps.MoviesConfig',
 ]
 
 REST_FRAMEWORK = {
