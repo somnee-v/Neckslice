@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from post.models import Comment
-from post.serializers import CommentSerializer
+from post.serializers import CommentSerializer, CommentCreateSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -19,4 +19,9 @@ class CommentView(APIView):
             serializers.save()
             return Response(serializers.data)
         else:
-            return Response(serializers.errors) 
+            return Response(serializers.errors)
+
+    # def get(self, request, post_id):
+    #     post = Comment.objects.get(id=post_id)
+    #     serializers = CommentSerializer(post)
+    #     return Response(serializers, status=status.HTTP_200_OK)
