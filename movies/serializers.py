@@ -9,9 +9,9 @@ class MovieTitleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ('id', 'title')
+        fields = ('id', 'title','poster_path','genres')
 
-# 무비 전체 API
+# 영화 데이터 전체 API
 class MovieDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
