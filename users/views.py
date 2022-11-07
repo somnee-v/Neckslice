@@ -11,7 +11,7 @@ from users.serializers import CustomTokenObtainPairSerializer, UserSerializer
 
 class UserView(APIView):
 
-    def POST(self,request):
+    def post(self,request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

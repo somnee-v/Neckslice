@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
+from users.models import User
 
 
 # 22.11.06 최신욱 추가.
@@ -25,3 +26,14 @@ class Movie(models.Model):
     vote_average = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])  # 평점
     vote_count = models.IntegerField(validators=[MinValueValidator(0)])  # 평점 투표 수 
     popularity = models.FloatField(validators=[MinValueValidator(0)])
+
+
+class Comment(models.Model): # 댓글 모델 
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now = True) 
+
+    def __str__(self):
+        return str(self.content)
