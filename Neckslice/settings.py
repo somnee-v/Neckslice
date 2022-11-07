@@ -26,16 +26,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
-    'post',
     'rest_framework_simplejwt',
     'django_filters',
     'users',
+<<<<<<< HEAD
 
     #cors 설정
     'corsheaders',
 
+=======
+>>>>>>> 8cfab5b2160f75dbaa4be34c00ea81ada38e4a17
     # 22.11.06 최신욱 추가.
     'movies.apps.MoviesConfig',
 ]

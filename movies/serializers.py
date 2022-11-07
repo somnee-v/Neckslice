@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import  Movie ,Genre
+from .models import Comment
 
 
 # 22.11.06 최신욱 추가.
@@ -24,3 +25,16 @@ class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
         fields = '__all__'
+
+# 댓글
+class CommentSerializer(serializers.ModelSerializer):
+    # users = serializers.ReadOnlyField(source = 'users.email')
+    class Meta:
+        model = Comment
+        fields = '__all__'
+        
+class CommentCreateSerializer(serializers.ModelSerializer):
+    # users = serializers.ReadOnlyField(source = 'users.email')
+    class Meta:
+        model = Comment
+        fields = ['content']

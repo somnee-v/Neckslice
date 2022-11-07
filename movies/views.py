@@ -2,9 +2,16 @@ from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.db.models import Q
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view
+from rest_framework import serializers
+from rest_framework.filters import SearchFilter
 from .models import Movie ,Genre
 from .serializers import MovieTitleSerializer ,MovieDetailSerializer, GenreSerializer
 
+from rest_framework.views import APIView
+from rest_framework import status
+from movies.models import Comment
+from movies.serializers import CommentSerializer
+from movies.serializers import CommentCreateSerializer
 
 # 22.11.06 최신욱 추가.
 
@@ -43,3 +50,43 @@ def genre_list(request, genre_name):
     
 
 
+
+#박소민_댓글기능 추가
+class CommentView(APIView):
+    def get(self, request, movie_pk):
+        post = Comment.objects.all()
+        serializer = CommentSerializer(post, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, movie_pk):
+        print(request.user)
+        serializers = CommentCreateSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save(user=request.user, movie_id=movie_pk)
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors)
+
+    
+
+class CommentDetailView(APIView): #20221107 문규빈 댓글 수정 / 삭제
+    def put(self, request, comment_id): # 댓글 수정
+        comment = get_object_or_404(Comment, id=comment_id)
+        print(request.user,comment.user)
+        if request.user == comment.user:  #문규빈 / 작성자만 수정 가능하게 하는 코드   
+            serializers = CommentCreateSerializer(comment, data=request.data)
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serializers.erros, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response("권한이 없습니다.", status=status.HTTP_403_FORBIDDEN) # 문규빈 / 작성자가 아닐경우 에러코드 전송
+    
+    def delete(self, request, comment_id): #댓글 삭제
+        comment = get_object_or_404(Comment, id=comment_id)
+        if request.user == comment.user:
+            comment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response("권한이 없습니다.", status=status.HTTP_403_FORBIDDEN) 
