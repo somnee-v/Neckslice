@@ -29,8 +29,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_filters',
-    'corsheaders',
     'users',
+
+
+    #cors 설정
+    'corsheaders',
+
+
     # 22.11.06 최신욱 추가.
     'movies.apps.MoviesConfig',
 ]
@@ -163,3 +168,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+# CORS 설정 추가.
+CORS_ALLOW_ALL_ORIGINS = True
