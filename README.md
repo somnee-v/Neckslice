@@ -40,9 +40,6 @@
   - 검색 기능
     - 문규빈
 
-<br>
-
-- 기능 설명 : <a href=""> 링크 </a>
 
 <br>
 
@@ -94,6 +91,7 @@
 <br>
 
 ## 6. ERD
+<img src="https://user-images.githubusercontent.com/113073492/200452158-0c2190a7-cab6-4369-90e9-9f5afd16fd28.png">
 
 <br>
 
@@ -104,3 +102,5 @@
 ## 7. API
 
 <br>
+
+<img src="https://user-images.githubusercontent.com/113073492/200449178-bbdda12b-d05a-4fe3-ae6b-396435952aaa.png">
