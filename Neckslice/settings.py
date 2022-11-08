@@ -29,8 +29,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_filters',
-    'corsheaders',
     'users',
+<<<<<<< HEAD
+
+    #cors 설정
+    'corsheaders',
+
+=======
+>>>>>>> 8cfab5b2160f75dbaa4be34c00ea81ada38e4a17
     # 22.11.06 최신욱 추가.
     'movies.apps.MoviesConfig',
 ]
@@ -48,6 +54,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -160,3 +167,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+# CORS 설정 추가.
+CORS_ALLOW_ALL_ORIGINS = True
